@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        canvas {
+            position: relative;
+        }
+        
+        #child {
+            color: white;
+            font-size: 4em;
+            font-family: 'Poppins', sans-serif;
+            position: absolute;
+            width: auto;
+            text-align: center;
+            border-radius: 45px;
+            background-color: rgba(0, 0, 0, .5);
+            padding: 60px;
+            opacity: 0;
+        }
+        
+        #child:hover {
+            opacity: 1;
+        }
+        
+        @keyframes animate-opacity {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .animate {
+            animation-duration: 1s;
+            animation-name: animate-opacity;
+            animation-delay: .25s;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r99/three.min.js"></script>
+    <script src="./js/entry.js"></script>
+
+    <div id="child" class="animate">
+        <h1>National Geological Surveys</h1>
+        <p>Serving the things since god knows when</p>
+    </div>
+
+    <script>
+        // Position element
+        let child = document.querySelector("#child");
+        let offset = {
+            offset_y: -75,
+            offset_x: 0,
+            width: child.offsetWidth,
+            height: child.offsetHeight,
+            midpoint_x: child.offsetWidth / 2,
+            midpoint_y: child.offsetHeight / 2,
+        };
+
+        child.style.left = `${(window.innerWidth/2) - offset.midpoint_x + offset.offset_x}px`;
+        child.style.top = `${(window.innerHeight/2) - offset.midpoint_y + offset.offset_y}px`;
+
+        setTimeout(function() {
+            child.style.opacity = "1";
+        }, 1250);
+    </script>
+</body>
+
+</html>
